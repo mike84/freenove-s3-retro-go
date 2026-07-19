@@ -8,6 +8,11 @@
 - [License](#license)
 
 # Description
+
+Retro-Go port for the Freenove ESP32-S3 with ILI9341 display, SD card, ES8311 audio, and Adafruit QT Gamepad. Supports Doom, Master System/Game Gear, Game Boy, and Game Boy Color.
+
+ROMs/WADs are not included. Add your files to the SD card under /roms/....
+
 Retro-Go is a firmware to play retro games on ESP32-based devices (officially supported are
 ODROID-GO and MRGC-G32, check [this list for other devices](components/retro-go/README.md)).
 The project consists of a launcher and half a dozen applications that have been heavily
