@@ -1,5 +1,5 @@
 # Table of contents
-- [About this fork](#About this fork)
+- [About this fork](#About-this-fork)
 - [Description](#description)
 - [Installation](#installation)
 - [Usage](#usage)
