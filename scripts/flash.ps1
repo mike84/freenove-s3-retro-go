@@ -8,8 +8,33 @@ $ErrorActionPreference = "Stop"
 $RepoRoot = Resolve-Path (Join-Path $PSScriptRoot "..")
 $WorkspaceRoot = Split-Path $RepoRoot -Parent
 
-$IdfPath = if ($env:FREENOVE_RETRO_IDF_PATH) { $env:FREENOVE_RETRO_IDF_PATH } else { Join-Path $WorkspaceRoot "_esp_idf" }
-$IdfToolsPath = if ($env:FREENOVE_RETRO_IDF_TOOLS_PATH) { $env:FREENOVE_RETRO_IDF_TOOLS_PATH } else { Join-Path $WorkspaceRoot "_esp_tools" }
+function Resolve-DependencyPath {
+    param(
+        [string]$EnvironmentVariableName,
+        [string]$FolderName
+    )
+
+    $Override = [Environment]::GetEnvironmentVariable($EnvironmentVariableName)
+    if ($Override) {
+        return $Override
+    }
+
+    $Candidates = @(
+        (Join-Path $WorkspaceRoot $FolderName),
+        (Join-Path (Join-Path $WorkspaceRoot "HansenLauncher") $FolderName)
+    )
+
+    foreach ($Candidate in $Candidates) {
+        if (Test-Path $Candidate) {
+            return $Candidate
+        }
+    }
+
+    return $Candidates[0]
+}
+
+$IdfPath = Resolve-DependencyPath "FREENOVE_RETRO_IDF_PATH" "_esp_idf"
+$IdfToolsPath = Resolve-DependencyPath "FREENOVE_RETRO_IDF_TOOLS_PATH" "_esp_tools"
 
 if (!(Test-Path $IdfPath)) {
     throw "ESP-IDF not found at '$IdfPath'. Set FREENOVE_RETRO_IDF_PATH."
