@@ -8,7 +8,7 @@
 - [Acknowledgements](#acknowledgements)
 - [License](#license)
 
-#About this fork
+# About-this-fork
 This repo is based on Retro-Go by ducalex.
 This fork adds support for the Freenove ESP32-S3 + ILI9341 + ES8311 + Adafruit QT Gamepad setup.
 Tested systems: Doom, SMS/Game Gear, GB/GBC.
